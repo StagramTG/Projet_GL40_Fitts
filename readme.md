@@ -15,8 +15,14 @@ et des résultats théoriques calculés avec des lois comme celles de Fitts.
 - Laravel : Pour la partie Serveur et BDD
 - P5.js : Pour la partie affichage
 - JQuery : Pour la partie AJAX
+- Chart.js : Pour afficher des graphiques pour les stats
 
 ### Autres informations
 
 Pour l'hébergement du projet :
 - livehost : gratuit
+
+### Différents tests possibles
+
+- Loi de Fitts
+- Loi de GOMS - Keystroke
