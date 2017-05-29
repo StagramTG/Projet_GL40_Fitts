@@ -11,6 +11,15 @@
 |
 */
 
+/* Route vers la page d'accueille */
 Route::get('/', function () {
     return view('home');
 });
+
+/* Routes vers les tests de Fitts */
+
+/* Routes vers les tests de Keystroke & GOMS */
+
+/* Routes vers les stats */
+
+/* Routes pour AJAX */
