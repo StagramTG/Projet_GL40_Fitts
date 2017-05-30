@@ -1,1 +1,7 @@
 /* CSS de l'application Fitts Test */
+
+*
+{
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $title; }}</title>
+    <title>{{ $title }}</title>
 
     {{-- Inclusion du css --}}
-    {{ HTML::style('css/app.css'); }}
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     {{-- Header et NavBar --}}
