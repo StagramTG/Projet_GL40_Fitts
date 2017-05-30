@@ -11,7 +11,6 @@ class Pages extends Controller
     */
     public function __construct()
     {
-        parent::__construct();
     }
 
     /*
@@ -19,6 +18,6 @@ class Pages extends Controller
     */
     public function home()
     {
-
+        return view('home');
     }
 }

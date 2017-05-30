@@ -12,9 +12,7 @@
 */
 
 /* Route vers la page d'accueille */
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', "Pages@home");
 
 /* Routes vers les tests de Fitts */
 
