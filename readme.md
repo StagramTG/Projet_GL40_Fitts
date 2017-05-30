@@ -26,3 +26,12 @@ Pour l'hébergement du projet :
 
 - Loi de Fitts
 - Loi de GOMS - Keystroke
+
+### Les pages du site
+
+- Page d'accueille
+- Pages de tests :
+    - Test de fitts
+    - Test de GOMS & Keystroke
+- Page de statistiques
+- Page à propos
