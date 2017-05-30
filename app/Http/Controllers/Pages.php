@@ -18,6 +18,6 @@ class Pages extends Controller
     */
     public function home()
     {
-        return view('home', ['title' => 'Accueil']);
+        return view('Pages.home', ['title' => 'Accueil']);
     }
 }

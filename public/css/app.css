@@ -7,7 +7,7 @@
 }
 
 /* Pour les écrans supérieurs à 960px de large */
-h1 .big_title
+h1 .big-title
 {
     text-align: center;
     font-size: 48px;
@@ -16,6 +16,62 @@ h1 .big_title
     width: 100%;
     display: block;
     margin: 0 auto;
+}
+
+/* div qui contient les boutons */
+.test-choices
+{
+    width: 960px;
+    min-height: 100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background-color: rgb(230, 230, 230);
+}
+
+.btn-test
+{
+    width: 200px;
+    height: 200px;
+    margin: auto;
+
+    border-radius: 10px;
+    transition: transform 1s, filter 1s;
+}
+
+.btn-test:hover
+{
+    transform: scale(1.1);
+    filter: sepia(50%);
+}
+
+/* Bouton pour accèder au test de la loi de fitts */
+.btn-fitts
+{
+    background-color: rgb(50, 150, 200);
+}
+
+/* Bouton pour accèder au test de la loi de goms */
+.btn-goms
+{
+    background-color: rgb(0, 180, 255);
+}
+
+/* Texte dans les boutons de choix de teste */
+.btn-test span
+{
+    display: block;
+    margin: 0 auto;
+    line-height: 200px;
+
+    text-align: center; 
+
+    color: white;
+    font-size: 32px;
 }
 
 /* Pour les écrans inférieurs à 960px de large */
