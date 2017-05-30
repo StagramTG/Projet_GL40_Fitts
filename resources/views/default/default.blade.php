@@ -16,5 +16,6 @@
     {{-- Footer --}}
 
     {{-- Inclusion du JS --}}
+    <script src="{{ asset('js/p5.min.js') }}"></script>
 </body>
 </html>
