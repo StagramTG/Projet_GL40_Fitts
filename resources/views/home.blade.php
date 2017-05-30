@@ -8,7 +8,7 @@
     {{-- Explications du concept du site --}}
 
     {{-- Choix des différents tests --}}
-    <div class="test_choice">
+    <div id="test_choice">
         {{-- Ici on mettra le canvas de p5.js --}}
     </div>
 @endsection
