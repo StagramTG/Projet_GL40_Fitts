@@ -17,5 +17,6 @@
 
     {{-- Inclusion du JS --}}
     <script src="{{ asset('js/p5.min.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}"></script>
 </body>
 </html>
