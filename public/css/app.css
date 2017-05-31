@@ -75,6 +75,16 @@ h1 .big-title
     background-color: #F55064;
 }
 
+.btn-stats
+{
+    background-color: #4EBA6F;
+}
+
+.btn-about
+{
+    background-color: #F0C419;
+}
+
 /* Texte dans les boutons de choix de teste */
 .btn-test span
 {

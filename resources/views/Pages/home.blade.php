@@ -25,15 +25,12 @@
             <div class="btn-goms btn-test">
                 <span>GOMS</span>
             </div>
-        </div>
 
-        <div class="btn-panel">
-            {{-- Ici on met les boutons pour les choix de tests --}}
-            <div class="btn-fitts btn-test">
+            <div class="btn-stats btn-test">
                 <span>Statistiques</span>
             </div>
 
-            <div class="btn-goms btn-test">
+            <div class="btn-about btn-test">
                 <span>A propos</span>
             </div>
         </div>
