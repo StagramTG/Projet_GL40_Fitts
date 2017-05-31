@@ -40,13 +40,15 @@ h1 .big-title
     margin: auto;
 
     border-radius: 10px;
-    transition: transform 1s, filter 1s;
+    transition: transform 0.3s, border-radius 0.3s;
+
+    cursor: pointer;
 }
 
 .btn-test:hover
 {
-    transform: scale(1.1);
-    filter: sepia(50%);
+    transform: rotate(45deg);
+    border-radius: 50%;
 }
 
 /* Bouton pour accèder au test de la loi de fitts */
@@ -72,6 +74,13 @@ h1 .big-title
 
     color: white;
     font-size: 32px;
+
+    transition: transform 0.3s;
+}
+
+.btn-test:hover span
+{
+    transform: rotate(-45deg);
 }
 
 /* Pour les écrans inférieurs à 960px de large */
