@@ -1,27 +1,42 @@
 @extends('default/default')
 
 @section('content')
-    <h1>
-        <span class="big-title">Accueil Fitts</span>
-    </h1>
+<div class="content">
 
-    {{-- Explications du concept du site --}}
+        <h1>
+            <span class="big-title">Accueil Fitts</span>
+        </h1>
 
-    {{-- Choix des différents tests --}}
-    <h2>Différents tests disponibles</h2>
-    <p>
-        Veuillez retrouver ci-dessous les différents tests proposés pour les lois en lien avec
-        les IHM.
-    </p>
+        {{-- Explications du concept du site --}}
 
-    <div class="test-choices">
-        {{-- Ici on met les boutons pour les choix de tests --}}
-        <div class="btn-fitts btn-test">
-            <span>FITTS</span>
+        {{-- Choix des différents tests --}}
+        <h2>Différents tests disponibles</h2>
+        <p>
+            Veuillez retrouver ci-dessous les différents tests proposés pour les lois en lien avec
+            les IHM.
+        </p>
+
+        <div class="btn-panel">
+            {{-- Ici on met les boutons pour les choix de tests --}}
+            <div class="btn-fitts btn-test">
+                <span>FITTS</span>
+            </div>
+
+            <div class="btn-goms btn-test">
+                <span>GOMS</span>
+            </div>
         </div>
 
-        <div class="btn-goms btn-test">
-            <span>GOMS</span>
+        <div class="btn-panel">
+            {{-- Ici on met les boutons pour les choix de tests --}}
+            <div class="btn-fitts btn-test">
+                <span>Statistiques</span>
+            </div>
+
+            <div class="btn-goms btn-test">
+                <span>A propos</span>
+            </div>
         </div>
-    </div>
+
+</div>
 @endsection
