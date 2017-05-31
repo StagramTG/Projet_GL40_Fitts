@@ -14,6 +14,9 @@
 /* Route vers la page d'accueille */
 Route::get('/', "Pages@home");
 
+/* Route vers la page à propos */
+Route::get('/about', 'Page@about');
+
 /* Routes vers les tests de Fitts */
 
 /* Routes vers les tests de Keystroke & GOMS */

@@ -20,4 +20,12 @@ class Pages extends Controller
     {
         return view('Pages.home', ['title' => 'Accueil']);
     }
+
+    /*
+        Page à propos du site
+    */
+    public function about()
+    {
+        return view('Pages.about', ['title' => 'A propos']);
+    }
 }
