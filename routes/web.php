@@ -13,6 +13,7 @@
 
 /* Route vers la page d'accueille */
 Route::get('/', "Pages@home")->name('home');
+Route::get('/home', "Pages@home")->name('home');
 
 /* Route vers la page à propos */
 Route::get('/about', 'Pages@about')->name('about');
