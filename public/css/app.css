@@ -36,7 +36,7 @@ h1 .big-title
     min-height: 100px;
     margin: 0 auto;
     margin-bottom: 20px;
-    padding: 20px;
+    /*padding: 20px;*/
     display: flex;
     justify-content: center;
 
@@ -55,6 +55,12 @@ h1 .big-title
     transition: transform 0.3s, border-radius 0.3s;
 
     cursor: pointer;
+}
+
+a
+{
+    text-decoration: none;
+    display: block;
 }
 
 .btn-test:hover
@@ -92,7 +98,7 @@ h1 .big-title
     margin: 0 auto;
     line-height: 200px;
 
-    text-align: center; 
+    text-align: center;
 
     color: white;
     font-size: 32px;

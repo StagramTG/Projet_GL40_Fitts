@@ -30,9 +30,9 @@
                 <span>Statistiques</span>
             </div>
 
-            <div class="btn-about btn-test">
+            <a href="{{ url('about') }}"><div class="btn-about btn-test">
                 <span>A propos</span>
-            </div>
+            </div></a>
         </div>
 
 </div>

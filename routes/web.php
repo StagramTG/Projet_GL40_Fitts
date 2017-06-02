@@ -12,10 +12,10 @@
 */
 
 /* Route vers la page d'accueille */
-Route::get('/', "Pages@home");
+Route::get('/', "Pages@home")->name('home');
 
 /* Route vers la page à propos */
-Route::get('/about', 'Page@about');
+Route::get('/about', 'Pages@about')->name('about');
 
 /* Routes vers les tests de Fitts */
 
