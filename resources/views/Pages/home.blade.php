@@ -18,17 +18,17 @@
 
         <div class="btn-panel">
             {{-- Ici on met les boutons pour les choix de tests --}}
-            <div class="btn-fitts btn-test">
+            <a href="{{ url('about') }}"><div class="btn-fitts btn-test">
                 <span>FITTS</span>
-            </div>
+            </div></a>
 
-            <div class="btn-goms btn-test">
+            <a href="{{ url('about') }}"><div class="btn-goms btn-test">
                 <span>GOMS</span>
-            </div>
+            </div></a>
 
-            <div class="btn-stats btn-test">
+            <a href="{{ url('about') }}"><div class="btn-stats btn-test">
                 <span>Statistiques</span>
-            </div>
+            </div></a>
 
             <a href="{{ url('about') }}"><div class="btn-about btn-test">
                 <span>A propos</span>

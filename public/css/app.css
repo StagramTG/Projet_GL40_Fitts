@@ -60,7 +60,7 @@ h1 .big-title
 a
 {
     text-decoration: none;
-    display: block;
+    flex: 1;
 }
 
 .btn-test:hover
