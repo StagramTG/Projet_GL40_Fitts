@@ -5,6 +5,12 @@ Participants :
 - Rémi Ponnelle
 - Thomas Gredin
 
+### TODO List
+
+- [ ] Ecrire le texte pour la page "about"
+- [ ] Réfléchir et concevoir les différents tests
+- [ ] Réfléchir et concevoir la page des statistiques
+ 
 ### But du projet
 
 Mettre en concurrences les résultats obtenu par des tests réelles auprès d'utilisateurs
