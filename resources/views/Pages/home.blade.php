@@ -18,7 +18,7 @@
 
         <div class="btn-panel">
             {{-- Ici on met les boutons pour les choix de tests --}}
-            <a href="{{ url('about') }}"><div class="btn-fitts btn-test">
+            <a href="{{ url('fittstest') }}"><div class="btn-fitts btn-test">
                 <span>FITTS</span>
             </div></a>
 

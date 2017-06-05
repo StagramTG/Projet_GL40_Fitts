@@ -19,6 +19,7 @@ Route::get('/home', "Pages@home")->name('home');
 Route::get('/about', 'Pages@about')->name('about');
 
 /* Routes vers les tests de Fitts */
+Route::get('/fittstest', 'Pages@fittsTest')->name('fittstest');
 
 /* Routes vers les tests de Keystroke & GOMS */
 

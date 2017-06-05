@@ -28,4 +28,12 @@ class Pages extends Controller
     {
         return view('Pages.about', ['title' => 'A propos']);
     }
+
+    /*
+        Page pour le test de la loi de fitts
+    */
+    public function fittsTest()
+    {
+        return view('Pages.fittstest', ['title' => 'Test de la loi de fitts']);
+    }
 }
