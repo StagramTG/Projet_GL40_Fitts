@@ -111,6 +111,11 @@ a
     transform: rotate(-45deg);
 }
 
+#canvas
+{
+    width: 100%;
+}
+
 /* Pour les écrans inférieurs à 960px de large */
 @media screen and (max-width: 960px)
 {
