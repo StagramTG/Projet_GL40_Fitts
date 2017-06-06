@@ -7,6 +7,7 @@
 /** VARIABLES GLOBALES */
 var p5Canvas;
 var container;
+var scoreBoard;
 
 var target;
 
@@ -50,14 +51,14 @@ function Target(x, y, color)
     /** Fonction d'update de la cible */
     this.update = function()
     {
-
+        
     }
 
     /** Fonction d'affichage de la cible dans le canvas */
     this.draw = function()
     {
         this.color.fill();
-        ellipse(x, y, this.diameter, this.diameter);
+        ellipse(this.x, this.y, this.diameter, this.diameter);
     }
 
     /** Fonction permettant de changer le diamètre de la cible */
@@ -114,6 +115,9 @@ function setup()
         let cw = container.offsetWidth;
     });
 
+    /** On lance une partie avec 20 cibles à toucher */
+    scoreBoard = new ScoreBoard(20);
+
     target = new Target(100, 100, new Color(255, 0, 0));
     target.setDiameter(100);
 }
@@ -126,5 +130,10 @@ function setup()
  */
 function draw()
 {
+    target.update();
+
+    clear();
+    background(0);
+
     target.draw();
 }
