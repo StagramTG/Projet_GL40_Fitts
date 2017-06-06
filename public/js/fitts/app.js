@@ -71,10 +71,27 @@ function Target(x, y, color)
  * Classe ScoreBoard
  * Représente le tableau des scores, retient donc les temps entre
  * chaque touche de cible ainsi que l'avancement du test
+ * @param {*Le nombre de cible à toucher pour terminer le test} hits 
  */
-function ScoreBoard()
+function ScoreBoard(hits)
 {
+    this.elapsedTimes = [];
+    this.targetToHit = 0;
 
+    this.hitTarget = function()
+    {
+        if(this.targetToHit > 0)
+        {
+            /** Encore des cibles à toucher */
+            this.targetToHit--;
+            return true;
+        }
+        else
+        {
+            /** Plus de cibles à toucher */
+            return false;
+        }
+    }
 }
 
 /**
