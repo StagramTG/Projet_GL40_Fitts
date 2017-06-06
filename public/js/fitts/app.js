@@ -8,6 +8,8 @@
 var p5Canvas;
 var container;
 
+var target;
+
 /** CLASSES */
 
 /**
@@ -23,9 +25,9 @@ function Color(r, g, b)
     this.g = g;
     this.b = b;
 
-    this.fill()
+    this.fill = function()
     {
-        fill(this.color.r, this.color.g, this.color.b);
+        fill(this.r, this.g, this.b);
     }
 }
 
@@ -52,17 +54,27 @@ function Target(x, y, color)
     }
 
     /** Fonction d'affichage de la cible dans le canvas */
-    this.draw()
+    this.draw = function()
     {
         this.color.fill();
         ellipse(x, y, this.diameter, this.diameter);
     }
 
     /** Fonction permettant de changer le diamètre de la cible */
-    this.setDiameter(d)
+    this.setDiameter = function(d)
     {
         this.diameter = d;
     }
+}
+
+/**
+ * Classe ScoreBoard
+ * Représente le tableau des scores, retient donc les temps entre
+ * chaque touche de cible ainsi que l'avancement du test
+ */
+function ScoreBoard()
+{
+
 }
 
 /**
@@ -83,8 +95,10 @@ function setup()
     window.addEventListener('resize', function()
     {
         let cw = container.offsetWidth;
-        p5Canvas.setSize(cw, cw / (16/9));
     });
+
+    target = new Target(100, 100, new Color(255, 0, 0));
+    target.setDiameter(100);
 }
 
 /**
@@ -95,5 +109,5 @@ function setup()
  */
 function draw()
 {
-
+    target.draw();
 }
