@@ -51,7 +51,7 @@ function Target(x, y, color)
     /** Fonction d'update de la cible */
     this.update = function()
     {
-        
+
     }
 
     /** Fonction d'affichage de la cible dans le canvas */
@@ -92,6 +92,40 @@ function ScoreBoard(hits)
             /** Plus de cibles à toucher */
             return false;
         }
+    }
+}
+
+/**
+ * Classe MenuState
+ * Permet de gérer le menu de lancement
+ */
+function MenuState()
+{
+    this.update = function()
+    {
+
+    }
+
+    this.draw = function()
+    {
+
+    }
+}
+
+/**
+ * Classe TestState
+ * Permet de gérer le test
+ */
+function TestState()
+{
+    this.update = function()
+    {
+
+    }
+
+    this.draw = function()
+    {
+
     }
 }
 
