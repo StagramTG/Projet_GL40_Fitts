@@ -8,6 +8,63 @@
 var p5Canvas;
 var container;
 
+/** CLASSES */
+
+/**
+ * Classe Color
+ * Représente les composantes RGB d'une couleur
+ * @param {*Composante rouge} r 
+ * @param {*Composante verte} g 
+ * @param {*Composante bleue} b
+ */
+function Color(r, g, b)
+{
+    this.r = r;
+    this.g = g;
+    this.b = b;
+
+    this.fill()
+    {
+        fill(this.color.r, this.color.g, this.color.b);
+    }
+}
+
+/**
+ * Classe Target
+ * Représente une cible
+ * @param {*Position en X} x 
+ * @param {*Position en Y} y 
+ * @param {*Couleur de la cible} color 
+ */
+function Target(x, y, color)
+{
+    this.x = x;
+    this.y = y;
+    this.color = color;
+
+    /** Représente le diamètre de la cible */
+    this.diameter = 50;
+
+    /** Fonction d'update de la cible */
+    this.update = function()
+    {
+
+    }
+
+    /** Fonction d'affichage de la cible dans le canvas */
+    this.draw()
+    {
+        this.color.fill();
+        ellipse(x, y, this.diameter, this.diameter);
+    }
+
+    /** Fonction permettant de changer le diamètre de la cible */
+    this.setDiameter(d)
+    {
+        this.diameter = d;
+    }
+}
+
 /**
  * Fonction Setup
  * 
