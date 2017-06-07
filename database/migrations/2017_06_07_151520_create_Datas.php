@@ -19,14 +19,14 @@ class CreateDatas extends Migration
             $table->float('diameter');
             $table->float('a');
             $table->float('b');
+            $table->integer('entries_id')->unsigned();
             $table->foreign('entries_id')
-                            ->references('id')->on('test_entries')
-                            ->onDelete('cascade');
-           $table->foreign('results_id')
-                            ->references('id')->on('results')
-                            ->onDelete('cascade');
-
+                            ->references('id')->on('test_entries');
+            $table->integer('results_id')->unsigned();
+            $table->foreign('results_id')
+                            ->references('id')->on('results');
         });
+
     }
 
     /**
