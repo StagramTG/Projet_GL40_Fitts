@@ -13,6 +13,6 @@
     </div>
 
     <script src="{{ asset('js/p5.min.js') }}"></script>
-    {{-- <script src="{{ asset('js/fitts/app.js') }}"></script> --}}
+    <script src="{{ asset('js/goms/app.js') }}"></script>
 </div>
 @endsection
