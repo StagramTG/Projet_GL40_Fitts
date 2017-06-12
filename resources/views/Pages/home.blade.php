@@ -22,11 +22,11 @@
                 <span>FITTS</span>
             </div></a>
 
-            <a href="{{ url('about') }}"><div class="btn-goms btn-test">
+            <a href="{{ url('gomstest') }}"><div class="btn-goms btn-test">
                 <span>GOMS</span>
             </div></a>
 
-            <a href="{{ url('about') }}"><div class="btn-stats btn-test">
+            <a href="{{ url('stats') }}"><div class="btn-stats btn-test">
                 <span>Statistiques</span>
             </div></a>
 
