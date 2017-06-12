@@ -22,7 +22,9 @@ Route::get('/about', 'Pages@about')->name('about');
 Route::get('/fittstest', 'Pages@fittsTest')->name('fittstest');
 
 /* Routes vers les tests de Keystroke & GOMS */
+Route::get('/gomstest', 'Pages@gomsTest')->name('gomstest');
 
 /* Routes vers les stats */
+Route::get('/stats', 'Pages@stats')->name('stats');
 
 /* Routes pour AJAX */

@@ -36,4 +36,20 @@ class Pages extends Controller
     {
         return view('Pages.fittstest', ['title' => 'Test de la loi de fitts']);
     }
+
+    /*
+        Page pour le test de la loi de GOMS
+    */
+    public function gomsTest()
+    {
+        return view('Pages.gomstest', ['title' => 'Test de la loi de GOMS']);
+    }
+
+    /*
+        Page pour les statistiques de fitts et GOMS
+    */
+    public function stats()
+    {
+        return view('Pages.stats', ['title' => 'Statistiques']);
+    }
 }
