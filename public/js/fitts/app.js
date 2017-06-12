@@ -55,9 +55,13 @@ function Target(x, y, color)
     this.diameter = 50;
 
     /** Fonction d'update de la cible */
-    this.update = function()
+    this.update = function(func)
     {
-
+        if(dist(x, y, mouseX, mouseY) <= this.diameter / 2)
+        {
+            if(mouseIsPressed)
+                func();
+        }
     }
 
     /** Fonction d'affichage de la cible dans le canvas */
@@ -134,8 +138,6 @@ function setup()
         let x = Math.floor(Math.random() * (width - MAX_DIAMETER * 2)) + MAX_DIAMETER;
         let y = Math.floor(Math.random() * (height - MAX_DIAMETER * 2)) + MAX_DIAMETER;
 
-        console.log(x);
-
         targets[i] = new Target(x, y, new Color(255, 128, 0));
     }
 
@@ -152,7 +154,10 @@ function setup()
 function draw()
 {
     /** Ici on fait les Updates */
-    launchTarget.update();
+    launchTarget.update(function() 
+    { 
+        launchTarget.color = new Color(random() * 255, random() * 255, random() * 255);
+    });
 
     /** On clear l'écran */
     clear();
