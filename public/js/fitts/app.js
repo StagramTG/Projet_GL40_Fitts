@@ -9,7 +9,13 @@ var p5Canvas;
 var container;
 var scoreBoard;
 
-var target;
+var launchTarget;
+var targets = [];
+
+var isTestStarted;
+
+/** CONSTANTES */
+const MAX_DIAMETER = 100;
 
 /** CLASSES */
 
@@ -96,40 +102,6 @@ function ScoreBoard(hits)
 }
 
 /**
- * Classe MenuState
- * Permet de gérer le menu de lancement
- */
-function MenuState()
-{
-    this.update = function()
-    {
-
-    }
-
-    this.draw = function()
-    {
-
-    }
-}
-
-/**
- * Classe TestState
- * Permet de gérer le test
- */
-function TestState()
-{
-    this.update = function()
-    {
-
-    }
-
-    this.draw = function()
-    {
-
-    }
-}
-
-/**
  * Fonction Setup
  * 
  * Mise en place de tous les éléments.
@@ -149,11 +121,26 @@ function setup()
         let cw = container.offsetWidth;
     });
 
-    /** On lance une partie avec 20 cibles à toucher */
-    scoreBoard = new ScoreBoard(20);
+    /** On lance une partie avec 10 cibles à toucher */
+    scoreBoard = new ScoreBoard(10);
 
-    target = new Target(100, 100, new Color(255, 0, 0));
-    target.setDiameter(100);
+    /** Création de la cible à cliquer de départ */
+    launchTarget = new Target(100, 100, new Color(0, 128, 255));
+    launchTarget.setDiameter(MAX_DIAMETER);
+
+    /** Création des 10 cibles qui composent le test */
+    for(var i = 0; i < 10; i++)
+    {
+        let x = Math.floor(Math.random() * (width - MAX_DIAMETER * 2)) + MAX_DIAMETER;
+        let y = Math.floor(Math.random() * (height - MAX_DIAMETER * 2)) + MAX_DIAMETER;
+
+        console.log(x);
+
+        targets[i] = new Target(x, y, new Color(255, 128, 0));
+    }
+
+    /** On commence avec le test non lancé ! */
+    isTestStarted = false;
 }
 
 /**
@@ -164,10 +151,17 @@ function setup()
  */
 function draw()
 {
-    target.update();
+    /** Ici on fait les Updates */
+    launchTarget.update();
 
+    /** On clear l'écran */
     clear();
     background(0);
 
-    target.draw();
+    /** Ici on fait les rendus */
+    for(var i = 0; i < 10; i++)
+    {
+        targets[i].draw();
+    }
+    launchTarget.draw();
 }

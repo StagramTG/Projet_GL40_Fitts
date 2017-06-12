@@ -14,6 +14,10 @@ class Pages extends Controller
     }
 
     /*
+        PAGES CLASSIQUES
+    */
+
+    /*
         Page d'accueil du site
     */
     public function home()
@@ -52,4 +56,8 @@ class Pages extends Controller
     {
         return view('Pages.stats', ['title' => 'Statistiques']);
     }
+
+    /*
+        CONTROLLER POUR AJAX
+    */
 }
