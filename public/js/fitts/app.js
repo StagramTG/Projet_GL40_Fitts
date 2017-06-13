@@ -85,7 +85,6 @@ function Target(x, y, color)
  */
 function ScoreBoard(hits)
 {
-    this.elapsedTimes = [];
     this.targetToHit = hits;
     this.isTestEnded = false;
     this.isTestStarted = false;
@@ -130,6 +129,37 @@ function ScoreBoard(hits)
     this.testEnded = function()
     {
         return this.isTestEnded;
+    }
+}
+
+/**
+ * Classe TestDatas
+ * Structure qui contient les différentes données relatives à un test de
+ * la loi de fitts
+ */
+function TestDatas()
+{
+    /** 
+     * Tableau de flottant qui représente les écarts de temps entre chaque
+     * cibles cliquées
+     * ex : 0.526
+     */
+    this.elapsedTimes = new Array([0]);
+    /**
+     * Tableau de doublet qui représente les coordonnées de la souris lors du départ
+     * du test et des différents cliques sur cibles
+     * ex : [100, 155]
+     */
+    this.mouseStarts = new Array();
+
+    this.addElapsedTime = function(time)
+    {
+        this.elapsedTimes.push(time);
+    }
+
+    this.addMouseStart = function(start)
+    {
+        this.mouseStarts.push(start);
     }
 }
 
@@ -209,7 +239,7 @@ function draw()
         targets[activeTargetIndex].draw();
     }
 
-    if(!scoreBoard.testStarted())
+    if(!scoreBoard.testStarted() && !scoreBoard.testEnded())
     {
         launchTarget.draw();
     }
