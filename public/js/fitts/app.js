@@ -10,6 +10,7 @@ var container;
 var scoreBoard;
 
 var launchTarget;
+var activeTargetIndex;
 var targets = [];
 
 /** CONSTANTES */
@@ -53,7 +54,7 @@ function Target(x, y, color)
     this.diameter = 50;
 
     /** Fonction d'update de la cible */
-    this.update = function(func)
+    this.onClick = function(func)
     {
         if(dist(x, y, mouseX, mouseY) <= this.diameter / 2)
         {
@@ -87,6 +88,7 @@ function ScoreBoard(hits)
     this.elapsedTimes = [];
     this.targetToHit = 0;
     this.isTestEnded = false;
+    this.isTestStarted = false;
 
     this.hitTarget = function()
     {
@@ -112,7 +114,7 @@ function ScoreBoard(hits)
         }
     }
 
-    this.draw()
+    this.draw = function()
     {
         /** Si le test est terminé, on l'écrit */
         if(this.isTestEnded)
@@ -121,6 +123,16 @@ function ScoreBoard(hits)
             fill(255, 255, 255);
             text("Fin de la partie", 10, 10);
         }
+    }
+
+    this.testStarted = function()
+    {
+        return this.isTestStarted;
+    }
+    
+    this.testEnded = function()
+    {
+        return this.isTestEnded;
     }
 }
 
@@ -148,14 +160,14 @@ function setup()
     scoreBoard = new ScoreBoard(10);
 
     /** Création de la cible à cliquer de départ */
-    launchTarget = new Target(100, 100, new Color(0, 128, 255));
+    launchTarget = new Target(width / 2, height / 2, new Color(0, 128, 255));
     launchTarget.setDiameter(MAX_DIAMETER);
 
     /** Création des 10 cibles qui composent le test */
     for(var i = 0; i < 10; i++)
     {
-        let x = Math.floor(Math.random() * (width - MAX_DIAMETER * 2)) + MAX_DIAMETER;
-        let y = Math.floor(Math.random() * (height - MAX_DIAMETER * 2)) + MAX_DIAMETER;
+        let x = Math.floor(Math.random() * (width - MAX_DIAMETER * 1.5)) + MAX_DIAMETER;
+        let y = Math.floor(Math.random() * (height - MAX_DIAMETER * 1.5)) + MAX_DIAMETER;
 
         targets[i] = new Target(x, y, new Color(255, 128, 0));
     }
@@ -170,9 +182,9 @@ function setup()
 function draw()
 {
     /** Ici on fait les Updates */
-    launchTarget.update(function() 
-    { 
-        launchTarget.color = new Color(random() * 255, random() * 255, random() * 255);
+    launchTarget.onClick(function() 
+    {
+        scoreBoard.isTestStarted = true;
     });
 
     /** On clear l'écran */
@@ -184,5 +196,9 @@ function draw()
     {
         targets[i].draw();
     }
-    launchTarget.draw();
+
+    if(!scoreBoard.testStarted())
+    {
+        launchTarget.draw();
+    }
 }
