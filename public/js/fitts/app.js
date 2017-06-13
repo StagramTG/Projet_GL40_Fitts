@@ -86,13 +86,13 @@ function Target(x, y, color)
 function ScoreBoard(hits)
 {
     this.elapsedTimes = [];
-    this.targetToHit = 0;
+    this.targetToHit = hits;
     this.isTestEnded = false;
     this.isTestStarted = false;
 
     this.hitTarget = function()
     {
-        if(this.targetToHit > 0)
+        if(this.targetToHit >= 0)
         {
             /** Encore des cibles à toucher */
             this.targetToHit--;
@@ -108,21 +108,18 @@ function ScoreBoard(hits)
     this.update = function()
     {
         /** On vérifie si le nombre de cible n'est pas < ou = à 0 */
-        if(this.targetToHit <= 0)
+        if(this.targetToHit <= 1)
         {
             this.isTestEnded = true;
+            this.isTestStarted = false;
         }
     }
 
     this.draw = function()
     {
-        /** Si le test est terminé, on l'écrit */
-        if(this.isTestEnded)
-        {
-            /** On écrit en blanc */
-            fill(255, 255, 255);
-            text("Fin de la partie", 10, 10);
-        }
+        fill(255, 255, 255);
+        textSize(32);
+        text("Fin de la partie", 50, 50);
     }
 
     this.testStarted = function()
@@ -182,15 +179,22 @@ function setup()
 function draw()
 {
     /** Ici on fait les Updates */
-    launchTarget.onClick(function() 
+    if(!scoreBoard.testStarted())
     {
-        scoreBoard.isTestStarted = true;
-        activeTargetIndex = 9;
-    });
+        launchTarget.onClick(function() 
+        {
+            console.log('pressed');
+            scoreBoard.isTestStarted = true;
+            activeTargetIndex = 9;
+        });
+    }
+
+    scoreBoard.update();
 
     if(scoreBoard.testStarted())
     {
         targets[activeTargetIndex].onClick(function(){
+            scoreBoard.hitTarget();
             activeTargetIndex--;
         });
     }
@@ -200,7 +204,7 @@ function draw()
     background(0);
 
     /** Ici on fait les rendus */
-    if(scoreBoard.testEnded())
+    if(scoreBoard.testStarted() && activeTargetIndex > 0)
     {
         targets[activeTargetIndex].draw();
     }
@@ -211,8 +215,8 @@ function draw()
     }
 
     /** On vérifie si le test est terminé */
-    if(scoreBoard.isTestEnded)
+    if(scoreBoard.testEnded())
     {
-
+        scoreBoard.draw();
     }
 }
