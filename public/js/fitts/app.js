@@ -13,6 +13,13 @@ var launchTarget;
 var activeTargetIndex;
 var targets = [];
 
+/** variables pour mesurer le temps entre deux cliques de cibles */
+var timeStart;
+var timeEnd;
+
+/** L'objet pour les données collectés */
+var testDatas;
+
 /** CONSTANTES */
 const MAX_DIAMETER = 100;
 
@@ -144,7 +151,7 @@ function TestDatas()
      * cibles cliquées
      * ex : 0.526
      */
-    this.elapsedTimes = new Array([0]);
+    this.elapsedTimes = new Array();
     /**
      * Tableau de doublet qui représente les coordonnées de la souris lors du départ
      * du test et des différents cliques sur cibles
@@ -213,9 +220,14 @@ function draw()
     {
         launchTarget.onClick(function() 
         {
-            console.log('pressed');
             scoreBoard.isTestStarted = true;
             activeTargetIndex = 9;
+
+            testDatas = new TestDatas();
+            testDatas.addElapsedTime(0);
+            testDatas.addMouseStart([mouseX, mouseY]);
+
+            timeStart = new Date().getTime();
         });
     }
 
@@ -223,7 +235,16 @@ function draw()
 
     if(scoreBoard.testStarted())
     {
-        targets[activeTargetIndex].onClick(function(){
+        targets[activeTargetIndex].onClick(function()
+        {
+            /** Mesure du temps écoulé */
+            timeEnd = new Date().getTime();
+            let etime = timeEnd - timeStart;
+
+            /** Ajout des données */
+            testDatas.addElapsedTime(etime);
+            testDatas.addMouseStart([mouseX, mouseY]);
+
             scoreBoard.hitTarget();
             activeTargetIndex--;
         });
