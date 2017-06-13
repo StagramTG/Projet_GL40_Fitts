@@ -12,6 +12,10 @@
         {{-- Ici on place le canvas de P5.js --}}
     </div>
 
+    <div class="send_btn">
+        {{-- Ici on place le bouton d'envoi à la fin du test --}}
+    </div>
+
     <script src="{{ asset('js/p5.min.js') }}"></script>
     <script src="{{ asset('js/fitts/app.js') }}"></script>
 </div>

@@ -20,6 +20,13 @@ var timeEnd;
 /** L'objet pour les données collectés */
 var testDatas;
 
+/** $
+ * Bouton qui doit apparaître à la fin du test pour envoyer les données 
+ * et quitter le test
+ */
+var sendButton;
+var isSendBtnAdded = false;
+
 /** CONSTANTES */
 const MAX_DIAMETER = 100;
 
@@ -271,5 +278,9 @@ function draw()
     if(scoreBoard.testEnded())
     {
         scoreBoard.draw();
+        if(!isSendBtnAdded)
+        {
+            
+        }
     }
 }
