@@ -242,11 +242,13 @@ function draw()
             let etime = timeEnd - timeStart;
 
             /** Ajout des données */
-            testDatas.addElapsedTime(etime);
+            testDatas.addElapsedTime(etime / 1000);
             testDatas.addMouseStart([mouseX, mouseY]);
 
             scoreBoard.hitTarget();
             activeTargetIndex--;
+
+            timeStart = new Date().getTime();
         });
     }
 
@@ -269,5 +271,9 @@ function draw()
     if(scoreBoard.testEnded())
     {
         scoreBoard.draw();
+        for(var i = 0; i < testDatas.elapsedTimes.lenght; i++)
+        {
+            console.log('time ' + i + ' : ' + testDatas.elapsedTimes[i]);
+        }
     }
 }
