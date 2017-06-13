@@ -12,8 +12,6 @@ var scoreBoard;
 var launchTarget;
 var targets = [];
 
-var isTestStarted;
-
 /** CONSTANTES */
 const MAX_DIAMETER = 100;
 
@@ -88,6 +86,7 @@ function ScoreBoard(hits)
 {
     this.elapsedTimes = [];
     this.targetToHit = 0;
+    this.isTestEnded = false;
 
     this.hitTarget = function()
     {
@@ -101,6 +100,26 @@ function ScoreBoard(hits)
         {
             /** Plus de cibles à toucher */
             return false;
+        }
+    }
+
+    this.update = function()
+    {
+        /** On vérifie si le nombre de cible n'est pas < ou = à 0 */
+        if(this.targetToHit <= 0)
+        {
+            this.isTestEnded = true;
+        }
+    }
+
+    this.draw()
+    {
+        /** Si le test est terminé, on l'écrit */
+        if(this.isTestEnded)
+        {
+            /** On écrit en blanc */
+            fill(255, 255, 255);
+            text("Fin de la partie", 10, 10);
         }
     }
 }
@@ -140,9 +159,6 @@ function setup()
 
         targets[i] = new Target(x, y, new Color(255, 128, 0));
     }
-
-    /** On commence avec le test non lancé ! */
-    isTestStarted = false;
 }
 
 /**
