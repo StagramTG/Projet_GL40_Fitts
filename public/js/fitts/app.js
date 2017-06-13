@@ -178,6 +178,16 @@ function TestDatas()
 }
 
 /**
+ * Fonction sendDatas
+ * Envoie des données dans la base de donnée
+ */
+function sendDatas(event)
+{
+    event.preventDefault();
+    console.log('data sent !');
+}
+
+/**
  * Fonction Setup
  * 
  * Mise en place de tous les éléments.
@@ -280,7 +290,14 @@ function draw()
         scoreBoard.draw();
         if(!isSendBtnAdded)
         {
-            
+            sendButton = document.createElement("button");
+            sendButton.appendChild(document.createTextNode("Envoyer les résultats"));
+            sendButton.addEventListener('click', sendDatas);
+
+            let btnArea = document.querySelector('.send_btn');
+            btnArea.appendChild(sendButton);
+
+            isSendBtnAdded = true;
         }
     }
 }
