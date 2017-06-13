@@ -271,9 +271,5 @@ function draw()
     if(scoreBoard.testEnded())
     {
         scoreBoard.draw();
-        for(var i = 0; i < testDatas.elapsedTimes.lenght; i++)
-        {
-            console.log('time ' + i + ' : ' + testDatas.elapsedTimes[i]);
-        }
     }
 }
