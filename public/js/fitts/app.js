@@ -185,20 +185,34 @@ function draw()
     launchTarget.onClick(function() 
     {
         scoreBoard.isTestStarted = true;
+        activeTargetIndex = 9;
     });
+
+    if(scoreBoard.testStarted())
+    {
+        targets[activeTargetIndex].onClick(function(){
+            activeTargetIndex--;
+        });
+    }
 
     /** On clear l'écran */
     clear();
     background(0);
 
     /** Ici on fait les rendus */
-    for(var i = 0; i < 10; i++)
+    if(scoreBoard.testEnded())
     {
-        targets[i].draw();
+        targets[activeTargetIndex].draw();
     }
 
     if(!scoreBoard.testStarted())
     {
         launchTarget.draw();
+    }
+
+    /** On vérifie si le test est terminé */
+    if(scoreBoard.isTestEnded)
+    {
+
     }
 }
