@@ -184,7 +184,25 @@ function TestDatas()
 function sendDatas(event)
 {
     event.preventDefault();
-    console.log('data sent !');
+    let json = JSON.stringify(testDatas);
+    
+    $.ajax({
+        method: 'POST',
+        url: post_url,
+        data: json,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function()
+        {
+            alert('success !');
+        }
+    });
+
+    // $.ajax({
+    //     method: 'POST',
+    //     url: '',
+    //     data: ''
+    // });
 }
 
 /**

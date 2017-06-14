@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Input;
 
 class Pages extends Controller
 {
@@ -60,4 +61,8 @@ class Pages extends Controller
     /*
         CONTROLLER POUR AJAX
     */
+    public function fittsTestStart()
+    {
+        print_r(Input::all());
+    }
 }
