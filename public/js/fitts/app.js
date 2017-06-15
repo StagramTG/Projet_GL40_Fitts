@@ -182,6 +182,11 @@ function TestDatas()
     {
         this.mouseStarts.push(start);
     }
+
+    this.addTargetDiameter = function(diameter)
+    {
+        this.targetSize.push(diameter);
+    }
 }
 
 /**
