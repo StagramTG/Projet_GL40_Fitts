@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Input;
 
+use App\Fitts_result;
+
 class Pages extends Controller
 {
     /*
@@ -63,7 +65,10 @@ class Pages extends Controller
     */
     public function fittsTestPost(Request $request)
     {
-        dd($request["targetSize"]);
-        return response()->json(['request' => $request]);
+        $r = new Fitts_result;
+        $r->fill(['practical_result' => $request['elapsedTime'][0], 'theorical_result' => $request['elapsedTime'][1]]);
+        $r->save();
+
+        dd($r);
     }
 }
