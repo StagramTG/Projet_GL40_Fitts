@@ -61,8 +61,8 @@ class Pages extends Controller
     /*
         CONTROLLER POUR AJAX
     */
-    public function fittsTestStart()
+    public function fittsTestPost()
     {
-        print_r(Input::all());
+        return null;
     }
 }

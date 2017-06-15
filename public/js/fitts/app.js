@@ -197,12 +197,6 @@ function sendDatas(event)
             alert('success !');
         }
     });
-
-    // $.ajax({
-    //     method: 'POST',
-    //     url: '',
-    //     data: ''
-    // });
 }
 
 /**

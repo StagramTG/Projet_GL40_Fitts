@@ -17,7 +17,7 @@
     </div>
 
     <script>
-        var post_url = {{ url('fittstest.send'); }};
+        var post_url = '{{ url('fittstest.send') }}';
     </script>
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
