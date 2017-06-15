@@ -166,6 +166,13 @@ function TestDatas()
      */
     this.mouseStarts = new Array();
 
+    /**
+     * Tableau d'entier qui contient les tailles des différentes cibles
+     * cliquées par l'utilisateur
+     * ex : 100
+     */
+    this.targetSize = new Array();
+
     this.addElapsedTime = function(time)
     {
         this.elapsedTimes.push(time);
@@ -248,6 +255,7 @@ function setup()
         let y = Math.floor(Math.random() * (height - MAX_DIAMETER * 1.5)) + MAX_DIAMETER;
 
         targets[i] = new Target(x, y, new Color(255, 128, 0));
+        targets[i].setDiameter(Math.floor(Math.random() * (MAX_DIAMETER - 25) + 25));
     }
 }
 
