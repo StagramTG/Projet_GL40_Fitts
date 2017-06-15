@@ -28,4 +28,4 @@ Route::get('/gomstest', 'Pages@gomsTest')->name('gomstest');
 Route::get('/stats', 'Pages@stats')->name('stats');
 
 /* Routes pour AJAX */
-Route::post('/fittstest/send', 'Pages@fittsTestPost')->name('fittstest.send');
+Route::post('/fittstest/send', 'Pages@fittsTestPost')->name('fittsTestPost');

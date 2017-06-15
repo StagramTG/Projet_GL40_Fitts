@@ -16,10 +16,14 @@
         {{-- Ici on place le bouton d'envoi à la fin du test --}}
     </div>
 
-    <script>
-        var post_url = '{{ url('fittstest.send') }}';
-    </script>
+    <div class="ajax-result">
+    </div>
 
+    <script>
+        var post_url = '{{ route('fittsTestPost') }}';
+        var crsf_tocken = '{{ csrf_token() }}';
+    </script>
+    
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/p5.min.js') }}"></script>
     <script src="{{ asset('js/fitts/app.js') }}"></script>

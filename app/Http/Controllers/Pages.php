@@ -61,8 +61,9 @@ class Pages extends Controller
     /*
         CONTROLLER POUR AJAX
     */
-    public function fittsTestPost()
+    public function fittsTestPost(Request $request)
     {
-        return null;
+        dd($request["elapsedTimes"]);
+        return response()->json(['request' => $request]);
     }
 }

@@ -185,6 +185,16 @@ function sendDatas(event)
 {
     event.preventDefault();
     let json = JSON.stringify(testDatas);
+
+    /** 
+     * Surtout ne pas oublier de renseigner le jeton 
+     * sinon ça ne fonctionne pas...
+     */
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': crsf_tocken
+        }
+    });
     
     $.ajax({
         method: 'POST',
@@ -192,9 +202,14 @@ function sendDatas(event)
         data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function()
+        success: function(e)
         {
             alert('success !');
+            document.querySelector('.ajax-result').innerHTML = e.responseText;
+        },
+        error: function (e) 
+        {
+            document.querySelector('.ajax-result').innerHTML = e.responseText;
         }
     });
 }
