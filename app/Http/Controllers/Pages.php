@@ -63,7 +63,7 @@ class Pages extends Controller
     */
     public function fittsTestPost(Request $request)
     {
-        dd($request["elapsedTimes"]);
+        dd($request["targetSize"]);
         return response()->json(['request' => $request]);
     }
 }

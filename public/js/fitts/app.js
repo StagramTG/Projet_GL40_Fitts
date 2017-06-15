@@ -330,6 +330,11 @@ function draw()
         scoreBoard.draw();
         if(!isSendBtnAdded)
         {
+            for(let i = 0; i < 10; i++)
+            {
+                testDatas.addTargetDiameter(targets[i].diameter);
+            }
+
             sendButton = document.createElement("button");
             sendButton.appendChild(document.createTextNode("Envoyer les résultats"));
             sendButton.addEventListener('click', sendDatas);
