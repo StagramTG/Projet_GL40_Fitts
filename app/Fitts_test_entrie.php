@@ -11,4 +11,9 @@ class Fitts_test_entrie extends Model
 
     /* Champ valable pour assignation */
     protected $fillable = ['theorical_result', 'pratical_result'];
+
+    public function fitts_data()
+    {
+        return $this->hasMany('App\Fitts_data');
+    }
 }

@@ -255,7 +255,7 @@ function setup()
     launchTarget.setDiameter(MAX_DIAMETER);
 
     /** Création des 10 cibles qui composent le test */
-    for(var i = 0; i < 10; i++)
+    for(var i = 0; i < 11; i++)
     {
         let x = Math.floor(Math.random() * (width - MAX_DIAMETER * 1.5)) + MAX_DIAMETER;
         let y = Math.floor(Math.random() * (height - MAX_DIAMETER * 1.5)) + MAX_DIAMETER;

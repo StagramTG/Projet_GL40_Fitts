@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Input;
 
 use App\Fitts_result;
+use App\Fitts_test_entrie;
+use App\Fitts_data;
 
 class Pages extends Controller
 {
@@ -65,10 +67,27 @@ class Pages extends Controller
     */
     public function fittsTestPost(Request $request)
     {
-        $r = new Fitts_result;
-        $r->fill(['pratical_result' => $request['elapsedTimes'][0], 'theorical_result' => $request['elapsedTimes'][1]]);
-        $r->save();
+        /* Créer une entrée de test */
+        $entry = Fitts_test_entrie::create();
+        $entry->save();
 
-        dd($r);
+        /* Tant que des résultats */
+        for($i = 1; $i < count($request['elapsedTimes']); $i++)
+        {
+            /* Créer le résultat */
+            $result = Fitts_result::create(['pratical_result' => $request['elapsedTimes'][$i], 'theorical_result' => $request['elapsedTimes'][$i]]);
+            $result->save();
+
+            /* Créer le data */
+            $data = Fitts_data::create([
+                'distance' => sqrt(pow($request['mouseStarts'][$i][0] - $request['mouseStarts'][$i - 1][0], 2) + pow($request['mouseStarts'][$i][1] - $request['mouseStarts'][$i - 1][0], 2)), 
+                'diameter' => $request['targetSize'][$i], 
+                'a' => 0.1, 
+                'b' => 0.1, 
+                'entries_id' => $entry->id, 
+                'results_id' => $result->id
+            ]);
+            $data->save();
+        }
     }
 }

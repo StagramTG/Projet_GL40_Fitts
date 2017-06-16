@@ -13,4 +13,9 @@ class Fitts_result extends Model
 
     /* Champ valable pour assignation */
     protected $fillable = ['theorical_result', 'pratical_result'];
+
+    public function fitts_data()
+    {
+        return $this->belongsTo('App\Fitts_data');
+    }
 }
