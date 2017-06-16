@@ -12,5 +12,5 @@ class Fitts_result extends Model
     public $timestamps = false;
 
     /* Champ valable pour assignation */
-    protected $fillable = ['theorical_result', 'practical_result'];
+    protected $fillable = ['theorical_result', 'pratical_result'];
 }

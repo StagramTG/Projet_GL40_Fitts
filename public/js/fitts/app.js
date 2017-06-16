@@ -197,6 +197,7 @@ function sendDatas(event)
 {
     event.preventDefault();
     let json = JSON.stringify(testDatas);
+    console.log(json);
 
     /** 
      * Surtout ne pas oublier de renseigner le jeton 
@@ -338,6 +339,7 @@ function draw()
             sendButton = document.createElement("button");
             sendButton.appendChild(document.createTextNode("Envoyer les résultats"));
             sendButton.addEventListener('click', sendDatas);
+            console.log('add btn');
 
             let btnArea = document.querySelector('.send_btn');
             btnArea.appendChild(sendButton);
