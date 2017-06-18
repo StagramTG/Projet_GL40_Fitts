@@ -74,13 +74,17 @@ class Pages extends Controller
         /* Tant que des résultats */
         for($i = 1; $i < count($request['elapsedTimes']); $i++)
         {
+            /* Calcul de la valeur théorique suivant la loi de Fitts */
+            $distance = sqrt(pow($request['mouseStarts'][$i][0] - $request['mouseStarts'][$i - 1][0], 2) + pow($request['mouseStarts'][$i][1] - $request['mouseStarts'][$i - 1][0], 2));
+            $theoricalResult = 0.1 + 0.1 * log(1 + ($distance / $request['targetSize'][$i]), 2);
+
             /* Créer le résultat */
-            $result = Fitts_result::create(['pratical_result' => $request['elapsedTimes'][$i], 'theorical_result' => $request['elapsedTimes'][$i]]);
+            $result = Fitts_result::create(['pratical_result' => $request['elapsedTimes'][$i], 'theorical_result' => $theoricalResult]);
             $result->save();
 
             /* Créer le data */
             $data = Fitts_data::create([
-                'distance' => sqrt(pow($request['mouseStarts'][$i][0] - $request['mouseStarts'][$i - 1][0], 2) + pow($request['mouseStarts'][$i][1] - $request['mouseStarts'][$i - 1][0], 2)), 
+                'distance' => $distance, 
                 'diameter' => $request['targetSize'][$i], 
                 'a' => 0.1, 
                 'b' => 0.1, 
