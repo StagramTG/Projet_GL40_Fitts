@@ -21,6 +21,8 @@
 
     <script>
         var post_url = '{{ route('fittsTestPost') }}';
+        var home_url = '{{ route('home') }}';
+
         var crsf_tocken = '{{ csrf_token() }}';
     </script>
     

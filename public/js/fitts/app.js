@@ -225,6 +225,9 @@ function sendDatas(event)
             document.querySelector('.ajax-result').innerHTML = e.responseText;
         }
     });
+
+    /** Redirection vers l'accueil */
+    document.location = home_url;
 }
 
 /**
