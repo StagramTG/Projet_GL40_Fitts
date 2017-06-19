@@ -12,6 +12,19 @@
         {{-- Ici on met le graphe avec les stats de fitts --}}
     </canvas>
 
+    <script>
+
+        /** Lien pour la requête GET AJAX */
+        var url = '{{ route('stats.fitts.get') }}';
+
+        /** CRSF-Key */
+        var crsf_tocken = '{{ csrf_token() }}';
+        
+        /** Route vers la page home */
+        var home_url = '{{ route('home') }}';
+
+    </script>
+
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/chart.min.js') }}"></script>
     <script src="js/stats/app.js"></script>
