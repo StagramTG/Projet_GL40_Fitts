@@ -63,8 +63,10 @@ class Pages extends Controller
     }
 
     /*
-        CONTROLLER POUR AJAX
+        CONTROLLERS POUR AJAX
     */
+
+    /* Ajout du résultat d'un test dans BDD */
     public function fittsTestPost(Request $request)
     {
         /* Créer une entrée de test */
@@ -94,6 +96,12 @@ class Pages extends Controller
             $data->save();
         }
 
+        return response()->json();
+    }
+
+    /* Récupération des infos sur les tests de fitts */
+    public function statsfittsdatas()
+    {
         return response()->json();
     }
 }
