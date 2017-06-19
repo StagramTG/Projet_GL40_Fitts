@@ -217,17 +217,16 @@ function sendDatas(event)
         dataType: "json",
         success: function(e)
         {
-            alert('success !');
-            document.querySelector('.ajax-result').innerHTML = e.responseText;
+            alert('Succès de l\'envoie des données du test');
+            /** Redirection vers l'accueil */
+            document.location = home_url;
         },
         error: function (e) 
         {
+            alert('Echec de l\'envoie des données du test');
             document.querySelector('.ajax-result').innerHTML = e.responseText;
         }
     });
-
-    /** Redirection vers l'accueil */
-    document.location = home_url;
 }
 
 /**

@@ -27,5 +27,9 @@ Route::get('/gomstest', 'Pages@gomsTest')->name('gomstest');
 /* Routes vers les stats */
 Route::get('/stats', 'Pages@stats')->name('stats');
 
-/* Routes pour AJAX */
+/* 
+    Routes pour AJAX 
+*/
+
+/* Route pour poster les résultats dans la base de donnée ! */
 Route::post('/fittstest/send', 'Pages@fittsTestPost')->name('fittsTestPost');

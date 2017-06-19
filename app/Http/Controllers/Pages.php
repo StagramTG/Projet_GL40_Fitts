@@ -93,5 +93,7 @@ class Pages extends Controller
             ]);
             $data->save();
         }
+
+        return response()->json();
     }
 }
