@@ -21,19 +21,57 @@ $(document).ready(function()
     $.ajax({
         method: 'GET',
         url: url,
-        data: json,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(datas)
         {
             /** Création du DATASET pour Chart.js */
             chartDatasFitts = {
+                labels: new Array(),
+                datasets : [
+                    /** Données pratiques */
+                    {
+                        labels: "Temps pratiques",
+                        data: new Array(),
+                        backgroundColor: new Array(),
+                        borderColor: new Array()
+                    },
 
+                    /** Données théoriques */
+                    {
+                        labels: "Temps théoriques",
+                        data: new Array(),
+                        backgroundColor: new Array(),
+                        borderColor: new Array()
+                    }
+                ]
             };
+
+            for(var i = 0; i < datas.length; i++)
+            {
+                // remplir les tableaux de temps
+                chartDatasFitts.datasets[0].data.push(datas[i].pratical_result);
+                chartDatasFitts.datasets[0].backgroundColor.push('rgba(0, 0, 255, 0.4)');
+                chartDatasFitts.datasets[0].borderColor.push('rgba(0, 0, 255, 1)');
+
+                chartDatasFitts.datasets[1].data.push(datas[i].theorical_result);
+                chartDatasFitts.datasets[1].backgroundColor.push('rgba(255, 0, 0, 0.4)');
+                chartDatasFitts.datasets[1].borderColor.push('rgba(255, 0, 0, 1)');
+
+                chartDatasFitts.labels.push(i);
+            }
 
             /** Création des OPTIONS pour Chart.js */
             chartOptionsFitts = {
-
+                scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'second',
+                            unitStepSize: 0.01,
+                            round: true
+                        }
+                    }]
+                }
             };
 
             /** Création de l'objet pour le graphe */

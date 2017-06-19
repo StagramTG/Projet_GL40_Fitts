@@ -102,6 +102,8 @@ class Pages extends Controller
     /* Récupération des infos sur les tests de fitts */
     public function statsfittsdatas()
     {
-        return response()->json();
+        $results = Fitts_result::all();
+
+        return response()->json($results);
     }
 }

@@ -12,10 +12,13 @@
         {{-- Ici on met le graphe avec les stats de fitts --}}
     </canvas>
 
+    <div class="ajax-result">
+    </div>
+
     <script>
 
         /** Lien pour la requête GET AJAX */
-        var url = '{{ route('stats.fitts.get') }}';
+        var url = '{{ route('statsFittsGet') }}';
 
         /** CRSF-Key */
         var crsf_tocken = '{{ csrf_token() }}';

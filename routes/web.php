@@ -35,4 +35,4 @@ Route::get('/stats', 'Pages@stats')->name('stats');
 Route::post('/fittstest/send', 'Pages@fittsTestPost')->name('fittsTestPost');
 
 /* Route pour récupérer les données de la BDD et faire les stats */
-Route::get('/stats/fittsdatas', 'Pages@statsfittsdatas')->name('stats.fitts.get');
+Route::get('/stats/fittsdatas', 'Pages@statsfittsdatas')->name('statsFittsGet');

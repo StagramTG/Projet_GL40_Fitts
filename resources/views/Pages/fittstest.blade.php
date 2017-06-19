@@ -28,6 +28,6 @@
     
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/p5.min.js') }}"></script>
-    <script src="{{ asset('js/fitts/app.js') }}"></script>
+    <script src="{{ asset('js/stats/app.js') }}"></script>
 </div>
 @endsection
