@@ -3,6 +3,11 @@ var chartFitts;
 var chartDatasFitts;
 var chartOptionsFitts;
 
+function buildRelationalDataArray(results, datas)
+{
+
+}
+
 /** Fonction pour attendre la fin du chargement de la page */
 $(document).ready(function()
 {
@@ -47,14 +52,17 @@ $(document).ready(function()
                 ]
             };
 
-            for(var i = 0; i < datas.length; i++)
+            /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
+            buildRelationalDataArray(datas[0], datas[1]);
+
+            for(var i = 0; i < datas[0].length; i++)
             {
                 // remplir les tableaux de temps
-                chartDatasFitts.datasets[0].data.push(datas[i].pratical_result);
+                chartDatasFitts.datasets[0].data.push(datas[0][i].pratical_result);
                 chartDatasFitts.datasets[0].backgroundColor.push('rgba(0, 0, 255, 0.4)');
                 chartDatasFitts.datasets[0].borderColor.push('rgba(0, 0, 255, 1)');
 
-                chartDatasFitts.datasets[1].data.push(datas[i].theorical_result);
+                chartDatasFitts.datasets[1].data.push(datas[0][i].theorical_result);
                 chartDatasFitts.datasets[1].backgroundColor.push('rgba(255, 0, 0, 0.4)');
                 chartDatasFitts.datasets[1].borderColor.push('rgba(255, 0, 0, 1)');
 

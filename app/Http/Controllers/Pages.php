@@ -103,7 +103,8 @@ class Pages extends Controller
     public function statsfittsdatas()
     {
         $results = Fitts_result::all();
+        $datas = Fitts_data::all();
 
-        return response()->json($results);
+        return response()->json([$results, $datas]);
     }
 }
