@@ -5,7 +5,27 @@ var chartOptionsFitts;
 
 function buildRelationalDataArray(results, datas)
 {
+    let relationalDatas = new Map();
+    for(var i = 0; i < 20; i + 0.1)
+    {
+        
+    }
 
+    for(var i = 0; i < datas.length; i++)
+    {
+        let resultID = datas[i].results_id;
+        let result;
+        for(var i = 0; i < results.length; i++)
+        {
+            if(results[i].id === resultID)
+            {
+                result = results[i];
+                break;
+            }
+        }
+
+
+    }
 }
 
 /** Fonction pour attendre la fin du chargement de la page */
@@ -53,7 +73,7 @@ $(document).ready(function()
             };
 
             /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
-            buildRelationalDataArray(datas[0], datas[1]);
+            let relationalDatasFitts = buildRelationalDataArray(datas[0], datas[1]);
 
             for(var i = 0; i < datas[0].length; i++)
             {
