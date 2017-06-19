@@ -1,5 +1,5 @@
 var contextFittsNb = document.querySelector(".fitts_chart_nb").getContext('2d');
-var contextFitsSize = document.querySelector(".fitts_chart_size").getContext('2d');
+var contextFittsSize = document.querySelector(".fitts_chart_size").getContext('2d');
 
 var chartFitts;
 var chartDatasFitts;
@@ -104,12 +104,96 @@ function buildFittsNbChart(datas)
 
 function buildRelationalDataArraySize(results, datas)
 {
-    
+    let relationalDatas = new Array();
+    let theorical = new Map();
+    let practical = new Map();
+
+    for(let t = 0; t <= 2.1; )
+    {
+        theorical.set(t.toFixed(1), 0);
+        practical.set(t.toFixed(1), 0);
+        t = t + 0.1;
+    }
+
+    for(let i = 0; i < results.length; i++)
+    {
+        let roundTimeTheorical = (Math.round(results[i].theorical_result * 10) / 10).toFixed(1);
+        let roundTimePractical = (Math.round(results[i].pratical_result * 10) / 10).toFixed(1);
+
+        theorical.set(datas[i].distance / datas[i].diameter, roundTimeTheorical);
+        practical.set(datas[i].distance / datas[i].diameter, roundTimePractical);
+    }
+
+    relationalDatas.push(theorical);
+    relationalDatas.push(practical);
+
+    return [Array.from(relationalDatas[0]), Array.from(relationalDatas[1])];
 }
 
 function buildFittsSizeChart(datas)
 {
-    
+    /** Création du DATASET pour Chart.js */
+    chartDatasFittsSize = {
+        labels: new Array(),
+        datasets : [
+            /** Données pratiques */
+            {
+                label: "Temps pratiques",
+                data: new Array(),
+                backgroundColor: new Array(),
+                borderColor: new Array()
+            },
+
+            /** Données théoriques */
+            {
+                label: "Temps théoriques",
+                data: new Array(),
+                backgroundColor: new Array(),
+                borderColor: new Array()
+            }
+        ]
+    };
+
+    /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
+    var relationalDatasFittsSize = buildRelationalDataArraySize(datas[0], datas[1]);
+    console.log(relationalDatasFittsSize);
+
+    for(var i = 0; i < relationalDatasFittsSize[0].length; i++)
+    {
+        // remplir les tableaux de temps
+        chartDatasFittsSize.datasets[0].data.push(relationalDatasFittsSize[1][i][1]);
+        chartDatasFittsSize.datasets[0].backgroundColor.push('rgba(0, 0, 255, 0.4)');
+        chartDatasFittsSize.datasets[0].borderColor.push('rgba(0, 0, 255, 1)');
+
+        chartDatasFittsSize.datasets[1].data.push(relationalDatasFittsSize[0][i][1]);
+        chartDatasFittsSize.datasets[1].backgroundColor.push('rgba(255, 0, 0, 0.4)');
+        chartDatasFittsSize.datasets[1].borderColor.push('rgba(255, 0, 0, 1)');
+
+        chartDatasFittsSize.labels.push(relationalDatasFittsSize[1][i][0]);
+    }
+
+    /** Création des OPTIONS pour Chart.js */
+    chartOptionsFittsSize = {
+        scales: {
+            xAxes: [{
+                time: {
+                    unit: 'second',
+                    unitStepSize: 0.01,
+                    round: true
+                }
+            }]
+        }
+    };
+
+    /** Création de l'objet pour le graphe */
+    let chartParamsFittsSize = {
+        type: 'bar',
+        data: chartDatasFittsSize,
+        options: chartOptionsFittsSize
+    };
+
+    /** Création du graphe */
+    chartFittsSize = new Chart(contextFittsSize, chartDatasFittsSize);
 }
 
 /** Fonction pour attendre la fin du chargement de la page */
