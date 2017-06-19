@@ -5,27 +5,30 @@ var chartOptionsFitts;
 
 function buildRelationalDataArray(results, datas)
 {
-    let relationalDatas = new Map();
-    for(var i = 0; i < 20; i + 0.1)
+    let relationalDatas = new Array();
+    let theorical = new Map();
+    let practical = new Map();
+
+    for(let t = 0; t <= 2.1; )
     {
-        
+        theorical.set(t.toFixed(1), 0);
+        practical.set(t.toFixed(1), 0);
+        t = t + 0.1;
     }
 
-    for(var i = 0; i < datas.length; i++)
+    for(let i = 0; i < results.length; i++)
     {
-        let resultID = datas[i].results_id;
-        let result;
-        for(var i = 0; i < results.length; i++)
-        {
-            if(results[i].id === resultID)
-            {
-                result = results[i];
-                break;
-            }
-        }
+        let roundTimeTheorical = (Math.round(results[i].theorical_result * 10) / 10).toFixed(1);
+        let roundTimePractical = (Math.round(results[i].pratical_result * 10) / 10).toFixed(1);
 
-
+        theorical.set(roundTimeTheorical, theorical.get(roundTimeTheorical) + 1);
+        practical.set(roundTimePractical, practical.get(roundTimePractical) + 1);
     }
+
+    relationalDatas.push(theorical);
+    relationalDatas.push(practical);
+
+    return [Array.from(relationalDatas[0]), Array.from(relationalDatas[1])];
 }
 
 /** Fonction pour attendre la fin du chargement de la page */
@@ -56,7 +59,7 @@ $(document).ready(function()
                 datasets : [
                     /** Données pratiques */
                     {
-                        labels: "Temps pratiques",
+                        label: "Temps pratiques",
                         data: new Array(),
                         backgroundColor: new Array(),
                         borderColor: new Array()
@@ -64,7 +67,7 @@ $(document).ready(function()
 
                     /** Données théoriques */
                     {
-                        labels: "Temps théoriques",
+                        label: "Temps théoriques",
                         data: new Array(),
                         backgroundColor: new Array(),
                         borderColor: new Array()
@@ -73,20 +76,20 @@ $(document).ready(function()
             };
 
             /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
-            let relationalDatasFitts = buildRelationalDataArray(datas[0], datas[1]);
+            var relationalDatasFitts = buildRelationalDataArray(datas[0], datas[1]);
 
-            for(var i = 0; i < datas[0].length; i++)
+            for(var i = 0; i < relationalDatasFitts[0].length; i++)
             {
                 // remplir les tableaux de temps
-                chartDatasFitts.datasets[0].data.push(datas[0][i].pratical_result);
+                chartDatasFitts.datasets[0].data.push(relationalDatasFitts[1][i][1]);
                 chartDatasFitts.datasets[0].backgroundColor.push('rgba(0, 0, 255, 0.4)');
                 chartDatasFitts.datasets[0].borderColor.push('rgba(0, 0, 255, 1)');
 
-                chartDatasFitts.datasets[1].data.push(datas[0][i].theorical_result);
+                chartDatasFitts.datasets[1].data.push(relationalDatasFitts[0][i][1]);
                 chartDatasFitts.datasets[1].backgroundColor.push('rgba(255, 0, 0, 0.4)');
                 chartDatasFitts.datasets[1].borderColor.push('rgba(255, 0, 0, 1)');
 
-                chartDatasFitts.labels.push(i);
+                chartDatasFitts.labels.push(relationalDatasFitts[1][i][0]);
             }
 
             /** Création des OPTIONS pour Chart.js */
