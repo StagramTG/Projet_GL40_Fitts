@@ -8,7 +8,13 @@
         <span class="big-title">Statistiques</span>
     </h1>
 
-    <canvas class="fitts_chart">
+    <h3>Test de Fitts : Cibles touché par rapport au temps</h3>
+    <canvas class="fitts_chart_nb">
+        {{-- Ici on met le graphe avec les stats de fitts --}}
+    </canvas>
+
+    <h3>Test de Fitts : Relation taille des cibles et temps</h3>
+    <canvas class="fitts_chart_size">
         {{-- Ici on met le graphe avec les stats de fitts --}}
     </canvas>
 

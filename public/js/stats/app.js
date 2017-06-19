@@ -1,7 +1,13 @@
-var contextFitts = document.querySelector(".fitts_chart").getContext('2d');
+var contextFittsNb = document.querySelector(".fitts_chart_nb").getContext('2d');
+var contextFitsSize = document.querySelector(".fitts_chart_size").getContext('2d');
+
 var chartFitts;
 var chartDatasFitts;
 var chartOptionsFitts;
+
+var chartFittsSize;
+var chartDatasFittsSize;
+var chartOptionsFittsSize;
 
 function buildRelationalDataArray(results, datas)
 {
@@ -31,6 +37,81 @@ function buildRelationalDataArray(results, datas)
     return [Array.from(relationalDatas[0]), Array.from(relationalDatas[1])];
 }
 
+function buildFittsNbChart(datas)
+{
+    /** Création du DATASET pour Chart.js */
+    chartDatasFitts = {
+        labels: new Array(),
+        datasets : [
+            /** Données pratiques */
+            {
+                label: "Temps pratiques",
+                data: new Array(),
+                backgroundColor: new Array(),
+                borderColor: new Array()
+            },
+
+            /** Données théoriques */
+            {
+                label: "Temps théoriques",
+                data: new Array(),
+                backgroundColor: new Array(),
+                borderColor: new Array()
+            }
+        ]
+    };
+
+    /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
+    var relationalDatasFitts = buildRelationalDataArray(datas[0], datas[1]);
+
+    for(var i = 0; i < relationalDatasFitts[0].length; i++)
+    {
+        // remplir les tableaux de temps
+        chartDatasFitts.datasets[0].data.push(relationalDatasFitts[1][i][1]);
+        chartDatasFitts.datasets[0].backgroundColor.push('rgba(0, 0, 255, 0.4)');
+        chartDatasFitts.datasets[0].borderColor.push('rgba(0, 0, 255, 1)');
+
+        chartDatasFitts.datasets[1].data.push(relationalDatasFitts[0][i][1]);
+        chartDatasFitts.datasets[1].backgroundColor.push('rgba(255, 0, 0, 0.4)');
+        chartDatasFitts.datasets[1].borderColor.push('rgba(255, 0, 0, 1)');
+
+        chartDatasFitts.labels.push(relationalDatasFitts[1][i][0]);
+    }
+
+    /** Création des OPTIONS pour Chart.js */
+    chartOptionsFitts = {
+        scales: {
+            xAxes: [{
+                time: {
+                    unit: 'second',
+                    unitStepSize: 0.01,
+                    round: true
+                }
+            }]
+        }
+    };
+
+    /** Création de l'objet pour le graphe */
+    let chartParamsFitts = {
+        type: 'bar',
+        data: chartDatasFitts,
+        options: chartOptionsFitts
+    };
+
+    /** Création du graphe */
+    chartFitts = new Chart(contextFittsNb, chartParamsFitts);
+}
+
+function buildRelationalDataArraySize(results, datas)
+{
+    
+}
+
+function buildFittsSizeChart(datas)
+{
+    
+}
+
 /** Fonction pour attendre la fin du chargement de la page */
 $(document).ready(function()
 {
@@ -53,67 +134,8 @@ $(document).ready(function()
         dataType: "json",
         success: function(datas)
         {
-            /** Création du DATASET pour Chart.js */
-            chartDatasFitts = {
-                labels: new Array(),
-                datasets : [
-                    /** Données pratiques */
-                    {
-                        label: "Temps pratiques",
-                        data: new Array(),
-                        backgroundColor: new Array(),
-                        borderColor: new Array()
-                    },
-
-                    /** Données théoriques */
-                    {
-                        label: "Temps théoriques",
-                        data: new Array(),
-                        backgroundColor: new Array(),
-                        borderColor: new Array()
-                    }
-                ]
-            };
-
-            /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
-            var relationalDatasFitts = buildRelationalDataArray(datas[0], datas[1]);
-
-            for(var i = 0; i < relationalDatasFitts[0].length; i++)
-            {
-                // remplir les tableaux de temps
-                chartDatasFitts.datasets[0].data.push(relationalDatasFitts[1][i][1]);
-                chartDatasFitts.datasets[0].backgroundColor.push('rgba(0, 0, 255, 0.4)');
-                chartDatasFitts.datasets[0].borderColor.push('rgba(0, 0, 255, 1)');
-
-                chartDatasFitts.datasets[1].data.push(relationalDatasFitts[0][i][1]);
-                chartDatasFitts.datasets[1].backgroundColor.push('rgba(255, 0, 0, 0.4)');
-                chartDatasFitts.datasets[1].borderColor.push('rgba(255, 0, 0, 1)');
-
-                chartDatasFitts.labels.push(relationalDatasFitts[1][i][0]);
-            }
-
-            /** Création des OPTIONS pour Chart.js */
-            chartOptionsFitts = {
-                scales: {
-                    xAxes: [{
-                        time: {
-                            unit: 'second',
-                            unitStepSize: 0.01,
-                            round: true
-                        }
-                    }]
-                }
-            };
-
-            /** Création de l'objet pour le graphe */
-            let chartParamsFitts = {
-                type: 'bar',
-                data: chartDatasFitts,
-                options: chartOptionsFitts
-            };
-
-            /** Création du graphe */
-            chartFitts = new Chart(contextFitts, chartParamsFitts);
+            buildFittsNbChart(datas);
+            buildFittsSizeChart(datas);
         },
         error: function (e) 
         {
