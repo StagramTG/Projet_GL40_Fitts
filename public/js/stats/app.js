@@ -1,6 +1,3 @@
-var contextFittsNb = document.querySelector(".fitts_chart_nb").getContext('2d');
-var contextFittsSize = document.querySelector(".fitts_chart_size").getContext('2d');
-
 var chartFitts;
 var chartDatasFitts;
 var chartOptionsFitts;
@@ -99,7 +96,7 @@ function buildFittsNbChart(datas)
     };
 
     /** Création du graphe */
-    chartFitts = new Chart(contextFittsNb, chartParamsFitts);
+    return chartParamsFitts;
 }
 
 function buildRelationalDataArraySize(results, datas)
@@ -108,20 +105,13 @@ function buildRelationalDataArraySize(results, datas)
     let theorical = new Map();
     let practical = new Map();
 
-    for(let t = 0; t <= 2.1; )
-    {
-        theorical.set(t.toFixed(1), 0);
-        practical.set(t.toFixed(1), 0);
-        t = t + 0.1;
-    }
-
     for(let i = 0; i < results.length; i++)
     {
         let roundTimeTheorical = (Math.round(results[i].theorical_result * 10) / 10).toFixed(1);
         let roundTimePractical = (Math.round(results[i].pratical_result * 10) / 10).toFixed(1);
 
-        theorical.set(datas[i].distance / datas[i].diameter, roundTimeTheorical);
-        practical.set(datas[i].distance / datas[i].diameter, roundTimePractical);
+        theorical.set(Math.round(datas[i].distance / datas[i].diameter), roundTimeTheorical);
+        practical.set(Math.round(datas[i].distance / datas[i].diameter), roundTimePractical);
     }
 
     relationalDatas.push(theorical);
@@ -156,7 +146,6 @@ function buildFittsSizeChart(datas)
 
     /** Créer un nouveau tableau qui lie temps et rapport Distance/Largeur */
     var relationalDatasFittsSize = buildRelationalDataArraySize(datas[0], datas[1]);
-    console.log(relationalDatasFittsSize);
 
     for(var i = 0; i < relationalDatasFittsSize[0].length; i++)
     {
@@ -193,7 +182,7 @@ function buildFittsSizeChart(datas)
     };
 
     /** Création du graphe */
-    chartFittsSize = new Chart(contextFittsSize, chartDatasFittsSize);
+    return chartDatasFittsSize;
 }
 
 /** Fonction pour attendre la fin du chargement de la page */
@@ -218,8 +207,16 @@ $(document).ready(function()
         dataType: "json",
         success: function(datas)
         {
-            buildFittsNbChart(datas);
-            buildFittsSizeChart(datas);
+            let time = buildFittsNbChart(datas);
+            let size = buildFittsSizeChart(datas);
+
+            var contextFittsNb = document.querySelector(".fitts_chart_nb").getContext('2d');
+            var contextFittsSize = document.querySelector(".fitts_chart_size").getContext('2d');
+
+            console.log(size);
+
+            chartFitts = new Chart(contextFittsNb, time);
+            chartFittsSize = new Chart(contextFittsSize, size);
         },
         error: function (e) 
         {
