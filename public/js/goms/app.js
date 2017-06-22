@@ -9,6 +9,10 @@ var nbFile = [];
 //Position du fichier a cliquer de chaque niveau
 var position = [];
 
+var tableauFile = [];
+
+var special;
+
 //Canvas
 var p5Canvas;
 
@@ -50,7 +54,7 @@ function normalFile(x, y)
 
     this.draw = function()
     {
-        fill(0,0,0);
+        fill(255,255,255);
         rect(this.x,this.y,50,50);
     }
 }
@@ -65,9 +69,13 @@ function specialFile(x, y)
     this.x = x;
     this.y = y;
 
-    this.onClick = function()
+    this.onClick = function(func)
     {
-        
+        if((mouseX >= x) && (mouseX <= x+50) && (mouseY >= y) && (mouseY <= y+50))
+        {
+            if(mouseIsPressed)
+                func();
+        }
     }
 
     this.draw = function()
@@ -101,8 +109,8 @@ function setup()
 
     for(var i = 0; i < nb; i++)
     {
-        nbFile[nb-i-1] = Math.floor(Math.random() * 50 + 1);
-        position[nb-i-1] = Math.floor(Math.random() * nbFile[i] + 1);
+        nbFile[nb-i] = Math.floor(Math.random() * 50 + 1);
+        position[nb-i] = Math.floor(Math.random() * nbFile[nb-i] + 1);
     }
 
     gomsValue = new gomsValue(nb);
@@ -117,27 +125,31 @@ function setup()
  */
 function draw()
 {
+    clear();
+    background(0)
     if(activeLevel > 0)
     {
-        newLevel();
+        for( var i = 0; i < nbFile[activeLevel]; i++)
+        {
+            if(i+1 == position[activeLevel])
+            {
+                special = i;
+                tableauFile[i] = new specialFile(((5+(60*(i % 16))) % width),(5 + 60*((i -(i % 16)) / 16)));
+            }
+            else
+            {
+                tableauFile[i] = new normalFile(((5+(60*(i % 16))) % width),(5 + 60*((i -(i % 16)) / 16)));
+            }
+            tableauFile[i].draw();
+        }
     }
+    else
+    {
+        gomsValue.draw();
+    }
+    tableauFile[special].onClick(function()
+    {
+        activeLevel--;
+    });
 }
 
-/**
-*   Function newLevel
-*   Fonction qui a pour but d'afficher le niveau suivant.
-*/
-function newLevel()
-{
-    p5Canvas.clean();
-    tableauFile = Array();
-    tableauFile[0] = new specialFile(5,5);
-    for( var i = 1; i < nbFile[activeLevel]; i++)
-    {
-        tableauFile[i] = new normalFile(((55+(60*(i % 16))) % p5Canvas.offsetWidth),(5 + 60*((i -(i % 16)) / 16)))
-    }
-    for( var j = 0; j < nbFile[activeLevel]; j++)
-    {
-        tableauFile[j].draw();
-    }
-}
