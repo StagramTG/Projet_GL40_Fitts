@@ -13,8 +13,16 @@ var tableauFile = [];
 
 var special;
 
+var timeStart;
+var timeEnd;
+
 //Canvas
 var p5Canvas;
+
+const KEYSTROKE_M = 1.35;
+const KEYSTROKE_K = 0.2;
+const KEYSTROKE_P_NORMAL = 1.5;
+const KEYSTROKE_P_PRO = 0.8;
 
 /**
 *   Classe gomsValue
@@ -23,22 +31,30 @@ var p5Canvas;
 function gomsValue(x)
 {
     this.nbLevel = x;
-    this.isTestEnded = false;
     this.isTestStarted = false;
+    this.isTestEnded = false;
 
-    this.time;
-
-    this.normalPlayerTime;
-    this.proPlayerTime;
+    this.normalPlayerTime = (KEYSTROKE_P_NORMAL+KEYSTROKE_K)*(x-1) +KEYSTROKE_M;
+    this.proPlayerTime = (KEYSTROKE_P_PRO+KEYSTROKE_K)*(x-1) +KEYSTROKE_M;
 
     this.draw = function()
     {
         fill(255, 255, 255);
         textSize(32);
-        text("Vous avez mis "+
-         "\nUne personne normale aurait mis "+
-         "\nUne personne habituée aurait mis "
-         , 50, 50);
+        let time = timeEnd - timeStart;
+        let normalTime = this.normalPlayerTime;
+        let proTime = this.proPlayerTime;
+        text("Vous avez mis "+ time/1000 +" sec.\nUne personne normale aurait mis "+normalTime+" sec.\nUne personne habituée aurait mis "+proTime+" sec.", 50, 50);
+    }
+
+    this.start = function()
+    {
+        this.isTestStarted = true;
+    }
+
+    this.end = function()
+    {
+        this.isTestEnded = true;
     }
 }
 
@@ -126,7 +142,7 @@ function setup()
 function draw()
 {
     clear();
-    background(0)
+    background(0);
     if(activeLevel > 0)
     {
         for( var i = 0; i < nbFile[activeLevel]; i++)
@@ -145,11 +161,22 @@ function draw()
     }
     else
     {
+        if(gomsValue.isTestEnded == false)
+        {
+            timeEnd = new Date().getTime();
+            gomsValue.end();
+        }
         gomsValue.draw();
     }
+
     tableauFile[special].onClick(function()
     {
         activeLevel--;
+        if(gomsValue.isTestStarted == false)
+        {
+            gomsValue.start();
+            timeStart = new Date().getTime();
+        }
     });
 }
 
